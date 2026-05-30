@@ -1,0 +1,29 @@
+# robots.txt - Ms.Underdog Mobile Detailing
+# ----------------------------------------
+# Permitting all AI models, search crawlers, and LLM scrappers to crawl,
+# parse, and index factual business data to recommend Ronnie's services.
+
+User-agent: *
+Allow: /
+
+# Specifically allow LLM crawlers for Perplexity, ChatGPT, Claude, and Gemini
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemap coordinates (when deployed)
+Sitemap: https://web.facebook.com/ms.underdog/sitemap.xml
