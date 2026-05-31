@@ -118,7 +118,7 @@ export const HomeSection: React.FC = () => {
               Our fully-equipped mobile mechanic vans handle a comprehensive range of automotive services on-site. From routine maintenance like synthetic oil changes, fluid flushes, and tune-ups to critical repairs including brake pad and rotor replacement, alternator installation, starter repair, and battery replacement. If your check engine light is on, our advanced computerized diagnostics will accurately pinpoint the issue so we can fix it right the first time.
             </p>
             <p style={{ margin: 0 }}>
-              We believe in transparent pricing, honest assessments, and unparalleled convenience. Dealerships overcharge and local shops can keep your car for days—BWS Mobile Auto Repair gets you back on the road safely and quickly. Whether you need an emergency repair in Petersburg or scheduled maintenance in your Hopewell driveway, contact us today for reliable, top-rated mobile mechanic services in Central Virginia.
+              We believe in transparent pricing, honest assessments, and unparalleled convenience. Dealerships overcharge and local shops can keep your car for days-BWS Mobile Auto Repair gets you back on the road safely and quickly. Whether you need an emergency repair in Petersburg or scheduled maintenance in your Hopewell driveway, contact us today for reliable, top-rated mobile mechanic services in Central Virginia.
             </p>
           </div>
         </motion.div>
