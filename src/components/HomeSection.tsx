@@ -103,19 +103,24 @@ export const HomeSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* About Section */}
+        {/* SEO Rich Description Section */}
         <motion.div
           variants={itemVariants}
           className="service-card"
-          style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
+          style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
         >
-          <div>
-            <h2 style={{ fontSize: '20px', color: 'var(--navy)', margin: 0, fontWeight: 800 }}>Honest Prices. Real Experience.</h2>
-            <span style={{ color: '#d85816', fontSize: '13px', fontWeight: 700, textTransform: 'uppercase' }}>Serving Prince George, VA</span>
+          <h2 style={{ fontSize: '22px', color: 'var(--text-primary)', margin: 0, fontWeight: 800 }}>Trusted Mobile Auto Repair in Prince George & Hopewell, VA</h2>
+          <div style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <p style={{ margin: 0 }}>
+              BWS Mobile Auto Repair is your premier on-the-go mechanic service, proudly serving Prince George, Hopewell, Petersburg, and Colonial Heights, Virginia. We eliminate the hassle of traditional repair shops and expensive tow trucks by bringing ASE-certified, professional auto repair directly to your driveway, workplace, or roadside breakdown location.
+            </p>
+            <p style={{ margin: 0 }}>
+              Our fully-equipped mobile mechanic vans handle a comprehensive range of automotive services on-site. From routine maintenance like synthetic oil changes, fluid flushes, and tune-ups to critical repairs including brake pad and rotor replacement, alternator installation, starter repair, and battery replacement. If your check engine light is on, our advanced computerized diagnostics will accurately pinpoint the issue so we can fix it right the first time.
+            </p>
+            <p style={{ margin: 0 }}>
+              We believe in transparent pricing, honest assessments, and unparalleled convenience. Dealerships overcharge and local shops can keep your car for days—BWS Mobile Auto Repair gets you back on the road safely and quickly. Whether you need an emergency repair in Petersburg or scheduled maintenance in your Hopewell driveway, contact us today for reliable, top-rated mobile mechanic services in Central Virginia.
+            </p>
           </div>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.6', margin: 0 }}>
-            Dealerships overcharge and shops make you wait for weeks. We bring professional mechanic services straight to your home, office, or roadside breakdown. Get dealership-quality repairs with transparent pricing and no surprises.
-          </p>
         </motion.div>
 
 
@@ -131,7 +136,7 @@ export const HomeSection: React.FC = () => {
         </motion.div>
 
         {/* Business Hours */}
-        <motion.div variants={itemVariants} className="service-card">
+        <motion.div variants={itemVariants} className="service-card" style={{ maxWidth: '640px', width: '100%', margin: '0 auto' }}>
           <div style={{ marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '8px' }}>
             <h3 style={{ fontSize: '20px', color: 'var(--navy)', margin: 0, fontWeight: 800 }}>Business Hours</h3>
           </div>

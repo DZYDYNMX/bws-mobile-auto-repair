@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { ContactClient } from '../../components/ContactClient';
 
 export const metadata: Metadata = {
-  title: 'Book a Mobile Mechanic | Peninsula Mobile Mechanic',
+  title: 'Book a Mobile Mechanic | BWS Mobile Auto Repair',
   description: 'Request a free quote or book an onsite mobile mechanic directly to your driveway. Fast, transparent pricing and reliable service.',
 };
 
