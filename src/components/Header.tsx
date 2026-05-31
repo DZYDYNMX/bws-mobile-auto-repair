@@ -1,48 +1,50 @@
 import React from 'react';
 import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
-import type { SectionType } from './BottomNav';
+import Link from 'next/link';
+
+export type SectionType = 'home' | 'services' | 'contact';
 
 interface HeaderProps {
   activeSection?: SectionType;
   setActiveSection?: (section: SectionType) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
+export const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const tabs = [
-    { id: 'home' as SectionType, label: 'Home' },
-    { id: 'services' as SectionType, label: 'Services' },
-    { id: 'reviews' as SectionType, label: 'Reviews' },
-    { id: 'contact' as SectionType, label: 'Book Mechanic' },
+    { id: 'home' as SectionType, label: 'Home', href: '/' },
+    { id: 'services' as SectionType, label: 'Services', href: '/services' },
+    { id: 'contact' as SectionType, label: 'Book', href: '/contact' },
   ];
 
   return (
     <header className="app-header">
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0px', lineHeight: 1 }}>
-        <span style={{ fontSize: '14px', color: 'var(--accent-orange)', fontWeight: 800, letterSpacing: '0.36em', textTransform: 'uppercase', paddingLeft: '0.18em' }}>
-          Peninsula
-        </span>
-        <h1 style={{ fontSize: '18px', margin: 0, fontWeight: 700, letterSpacing: '0.02em', color: '#ffffff', textTransform: 'uppercase' }}>
-          Mobile Mechanic
+        <h1 style={{ fontSize: '22px', margin: 0, fontWeight: 800, letterSpacing: '0.02em', color: '#ffffff', textTransform: 'uppercase' }}>
+          BWS
         </h1>
+        <span style={{ fontSize: '11px', color: 'var(--accent-orange)', fontWeight: 800, letterSpacing: '0.12em', textTransform: 'uppercase', paddingLeft: '0.05em' }}>
+          Mobile Auto Repair
+        </span>
       </div>
 
       {/* Desktop Horizontal Navigation Links */}
       <div className="desktop-nav-links">
         {tabs.map((tab) => (
-          <button
+          <Link
             key={tab.id}
-            onClick={() => setActiveSection && setActiveSection(tab.id)}
+            href={tab.href}
             className={`desktop-nav-link ${activeSection === tab.id ? 'active' : ''}`}
+            style={{ textDecoration: 'none' }}
           >
             {tab.label}
-          </button>
+          </Link>
         ))}
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
         <motion.a
-          href="tel:6418402842"
+          href="tel:8048946591"
           style={{
             background: 'var(--accent-orange)',
             color: '#ffffff',

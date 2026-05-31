@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
@@ -37,13 +38,17 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
 
       <div className="responsive-grid-2">
         {services.map((service) => (
-          <motion.div
+          <motion.a
             key={service.id}
+            href={`/services/${service.id}`}
             className="service-card"
             variants={cardVariants}
-            onClick={() => onSelectService(service.id)}
-            style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column' }}
-            whileHover={{ scale: 1.01 }}
+            onClick={(e) => {
+              e.preventDefault();
+              window.history.pushState(null, '', `/services/${service.id}`);
+              onSelectService(service.id);
+            }}
+            style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', textDecoration: 'none' }}
             whileTap={{ scale: 0.99 }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '10px' }}>
@@ -62,7 +67,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onSelectServic
               <span>View Service Details</span>
               <ChevronRight size={16} />
             </div>
-          </motion.div>
+          </motion.a>
         ))}
       </div>
       

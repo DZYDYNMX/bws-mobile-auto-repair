@@ -16,15 +16,23 @@ export const Footer: React.FC = () => {
       gap: '8px'
     }}>
       <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--navy)' }}>
-        Peninsula Mobile Mechanic
+        BWS Mobile Auto Repair
       </div>
-      <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-        © 2026 All Rights Reserved.
+      <p style={{ fontSize: '13px', color: 'var(--text-secondary)', margin: '4px 0' }}>
+        Mobile mechanic services operating in Prince George, Hopewell, Petersburg, and Colonial Heights. We bring the repair shop directly to your driveway.
+      </p>
+      <div style={{ fontSize: '13px', color: 'var(--text-muted)' }}>
+        <a href="tel:8048946591" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
+          804-894-6591
+        </a>
       </div>
       <div style={{ fontSize: '13px', color: 'var(--text-muted)', display: 'flex', justifyContent: 'center', gap: '8px' }}>
         <button onClick={() => openLegal('privacy')} style={{ background: 'none', border: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>Privacy Policy</button>
         <span>|</span>
         <button onClick={() => openLegal('terms')} style={{ background: 'none', border: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer', padding: 0 }}>Terms of Service</button>
+      </div>
+      <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '8px' }}>
+        © 2026 BWS Mobile Auto Repair. All Rights Reserved.
       </div>
     </footer>
   );

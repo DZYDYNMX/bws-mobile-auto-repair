@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, MessageSquare, ShieldCheck } from 'lucide-react';
@@ -13,27 +15,21 @@ interface Review {
 const MECHANIC_REVIEWS: Review[] = [
   {
     id: 1,
-    name: 'Jamman Cliff',
+    name: 'Dennis Stanley Jr',
     rating: 5,
-    text: "Dylan did an excellent job on my alternator. Highly recommend him he's kind respectful in very polite, in knows how to get the job done."
+    text: "Excellent response time, I called at 8:30 pm he was at my house with in 30 min. Brandon is definitely about helping people and he’s very respectful. Affordable, knowledgeable I will definitely recommend him."
   },
   {
     id: 2,
-    name: 'Sarah M.',
+    name: 'Brandon Dent',
     rating: 5,
-    text: "If you need mechanic work done I highly recommend giving him a call. He came to my driveway and fixed my brakes the same day."
+    text: "Excellent response time, great customer service and great work."
   },
   {
     id: 3,
-    name: 'Mark T.',
-    rating: 5,
-    text: "Nicest best mobile mechanic there is very knowledgeable great service. Also, his prices are very reasonable compared to the dealership."
-  },
-  {
-    id: 4,
-    name: 'David R.',
-    rating: 5,
-    text: "Fast and professional. Diagnosed my check engine light and replaced the faulty sensor in no time. Great to have a reliable mechanic who comes to you."
+    name: 'Kamaria M.',
+    rating: 4,
+    text: "He works hard and did what he could. Very sweet guy! Give him a chance though he really wants to be serious about his business."
   }
 ];
 
@@ -58,7 +54,7 @@ export const ReviewsSection: React.FC = () => {
           Real Reviews
         </h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.5', margin: 0 }}>
-          Read what our customers are saying. 14 perfect 5-star reviews on Google Maps.
+          Read what our customers are saying. Verified reviews on Google Maps.
         </p>
       </div>
 
@@ -80,7 +76,7 @@ export const ReviewsSection: React.FC = () => {
             <Star size={16} fill="currentColor" />
           </div>
           <div>
-            <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1 }}>5.0</div>
+            <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1 }}>4.6</div>
             <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase' }}>Google Maps Average</div>
           </div>
         </div>
@@ -90,7 +86,7 @@ export const ReviewsSection: React.FC = () => {
         }}>
           <ShieldCheck size={20} color="var(--success)" />
           <div>
-            <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1 }}>14+</div>
+            <div style={{ fontSize: '24px', fontWeight: 800, color: 'var(--navy)', lineHeight: 1.1 }}>5</div>
             <div style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 600, textTransform: 'uppercase' }}>Verified Reviews</div>
           </div>
         </div>

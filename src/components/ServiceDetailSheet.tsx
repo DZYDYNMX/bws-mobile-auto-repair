@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { X, Check, Timer, Calendar, ShieldAlert } from 'lucide-react';
@@ -10,10 +11,19 @@ interface ServiceDetailSheetProps {
 
 export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceId, onClose, onBook }) => {
   useEffect(() => {
-    // Lock background scroll when sheet is open
+    // Bulletproof scroll lock (especially for iOS Safari)
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
+    
     return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
+      window.scrollTo(0, scrollY);
     };
   }, []);
 
@@ -155,10 +165,27 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
         >
 
           <div style={{
+            width: '100%',
+            height: '180px',
+            position: 'relative',
+            overflow: 'hidden'
+          }}>
+            <img 
+              src={`/services/${serviceId}.webp`} 
+              alt={details.title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--bg-card) 0%, transparent 60%)' }} />
+            <button onClick={onClose} style={{ position: 'absolute', top: '16px', right: '16px', background: 'rgba(0,0,0,0.5)', border: '1px solid rgba(255,255,255,0.1)', color: '#ffffff', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(4px)' }}>
+              <X size={15} />
+            </button>
+          </div>
+
+          <div style={{
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            padding: '8px 20px 14px 20px',
+            padding: '4px 20px 14px 20px',
             borderBottom: '1px solid var(--border-color)'
           }}>
             <div>
@@ -168,12 +195,28 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
                 <span>{details.duration}</span>
               </div>
             </div>
-            <button onClick={onClose} style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', color: 'var(--text-secondary)', width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-              <X size={15} />
-            </button>
           </div>
 
-          <div style={{ flex: 1, overflowY: 'auto', padding: '20px 20px 32px 20px' }}>
+          <div style={{ padding: '20px 20px 0 20px', display: 'flex', gap: '12px' }}>
+            <a 
+              href="tel:8048946591"
+              className="btn-outline"
+              style={{ flex: 1, fontSize: '15px', padding: '12px 16px', borderRadius: '12px', display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none' }}
+            >
+              <span>Call Us</span>
+            </a>
+            <motion.button
+              className="btn-orange"
+              style={{ flex: 1, fontSize: '15px', padding: '12px 16px', borderRadius: '12px' }}
+              onClick={() => onBook(serviceId)}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Calendar size={18} />
+              <span>Request</span>
+            </motion.button>
+          </div>
+
+          <div style={{ flex: 1, overflowY: 'auto', overscrollBehavior: 'contain', padding: '20px 20px 32px 20px' }}>
             <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.6', marginBottom: '24px' }}>
               {details.description}
             </p>
@@ -217,24 +260,6 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
               </div>
             )}
 
-            <div style={{ display: 'flex', gap: '12px' }}>
-              <a 
-                href="tel:6418402842"
-                className="btn-outline"
-                style={{ flex: 1, fontSize: '15px', padding: '16px', borderRadius: '12px', display: 'flex', justifyContent: 'center', alignItems: 'center', textDecoration: 'none' }}
-              >
-                <span>Call Us</span>
-              </a>
-              <motion.button
-                className="btn-orange"
-                style={{ flex: 1, fontSize: '15px', padding: '16px', borderRadius: '12px' }}
-                onClick={() => onBook(serviceId)}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Calendar size={18} />
-                <span>Request</span>
-              </motion.button>
-            </div>
           </div>
         </motion.div>
       </motion.div>

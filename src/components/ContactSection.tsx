@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Loader2, CheckCircle2, Send, ShieldCheck } from 'lucide-react';
@@ -14,6 +15,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
+  const [confirmPhone, setConfirmPhone] = useState('');
+  const [serviceArea, setServiceArea] = useState('');
   const [vehicleMakeModel, setVehicleMakeModel] = useState('');
   const [symptoms, setSymptoms] = useState(initialPackage ? `I'm requesting service for: ${initialPackage}\n\n` : '');
   
@@ -24,10 +27,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !phone) return;
+    if (phone !== confirmPhone) {
+      alert("Phone numbers do not match.");
+      return;
+    }
     setIsSubmitting(true);
     setSavedName(name);
 
-    const web3FormsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "";
+    const web3FormsKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "";
 
     try {
       if (web3FormsKey) {
@@ -40,12 +47,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
           body: JSON.stringify({
             access_key: web3FormsKey,
             subject: `New Service Request from ${name}`,
-            from_name: "Peninsula Mobile Mechanic",
-            name: name,
-            phone: phone,
-            vehicle: vehicleMakeModel || "Not provided",
-            symptoms: symptoms || "No additional notes",
-            requested_service: initialPackage || "General Inquiry"
+            from_name: "BWS Mobile Auto Repair",
+            "Client Name": name,
+            "Client Phone": phone,
+            "Service Area": serviceArea || "Not provided",
+            "Vehicle Info": vehicleMakeModel || "Not provided",
+            "Requested Service": initialPackage || "General Inquiry",
+            "Symptoms / Notes": symptoms || "No additional notes"
           })
         });
 
@@ -53,16 +61,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
           throw new Error("Failed to send booking via Web3Forms");
         }
       } else {
-        console.warn("VITE_WEB3FORMS_ACCESS_KEY is not defined in env variables. Emails will not send until configured.");
+        console.warn("NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY is not defined in env variables. Emails will not send until configured.");
         await new Promise(resolve => setTimeout(resolve, 1400));
       }
 
       setIsSuccess(true);
-      setName(''); setPhone(''); setVehicleMakeModel(''); setSymptoms('');
+      setName(''); setPhone(''); setServiceArea(''); setVehicleMakeModel(''); setSymptoms('');
     } catch (err) {
       console.error("Booking submission error:", err);
       setIsSuccess(true);
-      setName(''); setPhone(''); setVehicleMakeModel(''); setSymptoms('');
+      setName(''); setPhone(''); setServiceArea(''); setVehicleMakeModel(''); setSymptoms('');
     } finally {
       setIsSubmitting(false);
     }
@@ -126,15 +134,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label htmlFor="client-name">Full Name *</label>
+                  <input id="client-name" type="text" required placeholder="Your name" className="form-input" value={name} onChange={e => setName(e.target.value)} disabled={isSubmitting} />
+                </div>
+
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                  <div className="form-group" style={{ flex: '1 1 160px', marginBottom: 0 }}>
-                    <label htmlFor="client-name">Full Name *</label>
-                    <input id="client-name" type="text" required placeholder="Your name" className="form-input" value={name} onChange={e => setName(e.target.value)} disabled={isSubmitting} />
-                  </div>
-                  <div className="form-group" style={{ flex: '1 1 160px', marginBottom: 0 }}>
+                  <div className="form-group" style={{ flex: '1 1 140px', marginBottom: 0 }}>
                     <label htmlFor="client-phone">Phone Number *</label>
                     <input id="client-phone" type="tel" required placeholder="(641) 840-2842" className="form-input" value={phone} onChange={e => setPhone(e.target.value)} disabled={isSubmitting} />
                   </div>
+                  <div className="form-group" style={{ flex: '1 1 140px', marginBottom: 0 }}>
+                    <label htmlFor="client-confirm-phone">Confirm Phone *</label>
+                    <input id="client-confirm-phone" type="tel" required placeholder="(641) 840-2842" className="form-input" value={confirmPhone} onChange={e => setConfirmPhone(e.target.value)} disabled={isSubmitting} />
+                  </div>
+                </div>
+
+                <div className="form-group" style={{ marginBottom: 0 }}>
+                  <label htmlFor="client-area">Service Area (City / Zip Code) *</label>
+                  <input id="client-area" type="text" required placeholder="e.g. San Mateo, CA" className="form-input" value={serviceArea} onChange={e => setServiceArea(e.target.value)} disabled={isSubmitting} />
                 </div>
 
                 <div className="form-group" style={{ marginBottom: 0 }}>
@@ -178,6 +196,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
                     <><Send size={18} /><span>Send Request</span></>
                   )}
                 </motion.button>
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', margin: '16px 0 8px 0' }}>
+                  <div style={{ height: '1px', background: 'var(--border-color)', flex: 1 }} />
+                  <span style={{ fontSize: '12px', color: 'var(--text-muted)', textTransform: 'uppercase', fontWeight: 700 }}>or call us directly</span>
+                  <div style={{ height: '1px', background: 'var(--border-color)', flex: 1 }} />
+                </div>
+                
+                <a href="tel:8048946591" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', textDecoration: 'none' }}>
+                  <div>
+                    <div style={{ fontSize: '15px', color: 'var(--navy)', fontWeight: 800 }}>(804) 894-6591</div>
+                  </div>
+                </a>
               </form>
             )}
           </div>
@@ -216,31 +246,6 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
             ))}
           </div>
 
-          {/* Unified Contact & Location Block */}
-          <div style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-color)',
-            borderRadius: '14px',
-            padding: '20px 0',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            boxShadow: '0 2px 10px rgba(0,0,0,0.04)'
-          }}>
-            <a href="tel:6418402842" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', textDecoration: 'none' }}>
-              <div>
-                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 700 }}>Call Us Directly</div>
-                <div style={{ fontSize: '15px', color: 'var(--navy)', fontWeight: 800 }}>(641) 840-2842</div>
-              </div>
-            </a>
-            <div style={{ width: '1px', height: '48px', background: 'var(--border-color)', flexShrink: 0 }} />
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div>
-                <div style={{ fontSize: '11px', color: 'var(--text-secondary)', textTransform: 'uppercase', fontWeight: 700 }}>Service Area</div>
-                <div style={{ fontSize: '15px', color: 'var(--navy)', fontWeight: 800 }}>Hampton, VA</div>
-              </div>
-            </div>
-          </div>
 
           {/* Business Hours */}
           <div style={{
@@ -254,7 +259,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ initialPackage }
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
               <span style={{ color: 'var(--text-secondary)', fontWeight: 600, fontSize: '15px' }}>Monday - Sunday</span>
-              <span style={{ color: 'var(--navy)', fontWeight: 800, fontSize: '15px' }}>8:00 AM - 8:00 PM</span>
+              <span style={{ color: 'var(--navy)', fontWeight: 800, fontSize: '15px' }}>Open 24 Hours</span>
             </div>
             <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: '12px 0 0 0', lineHeight: 1.4 }}>
               * Same-day and emergency roadside appointments are available depending on schedule availability.

@@ -9,13 +9,29 @@ interface LegalSheetProps {
 
 export const LegalSheet: React.FC<LegalSheetProps> = ({ type, onClose }) => {
   useEffect(() => {
+    let scrollY = window.scrollY;
+    
     if (type) {
+      scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
     } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
       document.body.style.overflow = '';
     }
+    
     return () => {
-      document.body.style.overflow = '';
+      if (type) {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [type]);
 
@@ -82,7 +98,7 @@ export const LegalSheet: React.FC<LegalSheetProps> = ({ type, onClose }) => {
             </button>
           </div>
 
-          <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
+          <div style={{ flex: 1, overflowY: 'auto', overscrollBehavior: 'contain', padding: '20px 24px 32px 24px' }}>
             <p style={{ color: 'var(--text-muted)', fontSize: '14px', marginBottom: '24px' }}>
               Last Updated: {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </p>
@@ -113,7 +129,7 @@ export const LegalSheet: React.FC<LegalSheetProps> = ({ type, onClose }) => {
                 <div>
                   <h3 style={{ fontSize: '16px', color: 'var(--navy)', fontWeight: 700, marginBottom: '6px' }}>1. Service Agreement</h3>
                   <p style={{ color: 'var(--text-secondary)', fontSize: '15px', lineHeight: '1.6', margin: 0 }}>
-                    By requesting service from Peninsula Mobile Mechanic, you agree to allow our technicians to inspect, diagnose, and repair your vehicle at the provided location. You must have authorization to authorize repairs for the vehicle.
+                    By requesting service from BWS Mobile Auto Repair, you agree to allow our technicians to inspect, diagnose, and repair your vehicle at the provided location. You must have authorization to authorize repairs for the vehicle.
                   </p>
                 </div>
                 <div>
