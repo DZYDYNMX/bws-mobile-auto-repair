@@ -3,15 +3,7 @@ import { ServicesClient } from '../../../components/ServicesClient';
 
 export const runtime = 'edge';
 
-export function generateStaticParams() {
-  return [
-    { id: 'diagnostics' },
-    { id: 'brakes' },
-    { id: 'engine' },
-    { id: 'maintenance' },
-    { id: 'inspection' },
-  ];
-}
+
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
