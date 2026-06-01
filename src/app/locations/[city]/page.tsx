@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import App from '../../page';
 
+export const runtime = 'edge';
+
 export function generateStaticParams() {
   return [
     { city: 'prince-george' },

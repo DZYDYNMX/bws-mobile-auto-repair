@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { ServicesClient } from '../../../components/ServicesClient';
 
+export const runtime = 'edge';
+
 export function generateStaticParams() {
   return [
     { id: 'diagnostics' },
