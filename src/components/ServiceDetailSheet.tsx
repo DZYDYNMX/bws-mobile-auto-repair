@@ -33,6 +33,7 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
     title: string;
     duration: string;
     description: string;
+    seoContent?: string;
     servicesIncluded: string[];
     signsYouNeedThis?: string[];
     warnings?: string[];
@@ -41,6 +42,7 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
       title: 'Electrical & Diagnostics',
       duration: 'On-Site Diagnostic Scan',
       description: 'Modern vehicles rely heavily on complex electrical systems. We bring advanced dealership-level diagnostic scanners directly to your driveway to accurately identify the root cause of check engine lights or starting issues.',
+      seoContent: 'When your check engine light illuminates in Prince George or Hopewell, ignoring it can lead to expensive engine damage. Our mobile diagnostic service utilizes state-of-the-art OBD2 scanners to pull error codes, check live sensor data, and perform electrical load testing right in your driveway. From faulty oxygen sensors and loose gas caps to complex wiring issues and dead alternators, our expert mobile mechanics quickly pinpoint the exact cause of your vehicle\'s problem so you can get back on the road safely and affordably.',
       servicesIncluded: [
         'Full OBD2 computer system scan',
         'Battery load and health testing',
@@ -62,6 +64,7 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
       title: 'Brakes & Suspension',
       duration: 'Safety Critical Repair',
       description: 'Your braking and suspension systems are the most important safety features on your vehicle. We handle complete brake jobs and suspension replacements safely and cleanly right where your car is parked.',
+      seoContent: 'Don\'t take chances with worn-out brakes in Central Virginia. Our mobile brake repair service in Prince George and Petersburg provides dealership-quality pad replacements and rotor resurfacing without the hassle of a traditional repair shop. If you hear squealing when you stop, feel a vibration in your steering wheel, or notice your brake pedal feels soft, it\'s time for an immediate inspection. We use premium ceramic or semi-metallic pads and high-quality rotors to ensure smooth, quiet, and reliable stopping power. We handle the entire repair safely in your driveway or office parking lot.',
       servicesIncluded: [
         'Premium ceramic or semi-metallic pad installation',
         'Rotor resurfacing or replacement',
@@ -83,6 +86,7 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
       title: 'Engine & Cooling Systems',
       duration: 'Component Replacement',
       description: 'An overheating engine can destroy a motor in minutes. We provide mobile replacement of critical cooling system components and drive belts to keep your engine running at the optimal temperature.',
+      seoContent: 'An overheating engine or a snapped serpentine belt can leave you stranded. Our mobile mechanics specialize in critical cooling system and belt repairs across Prince George, Hopewell, and Petersburg. Whether you have a leaking water pump, a cracked radiator, a stuck thermostat, or a squealing drive belt, we arrive fully equipped to replace the faulty components on-site. We perform thorough pressure tests to locate hidden coolant leaks and ensure your engine maintains its optimal operating temperature, protecting you from catastrophic engine failure.',
       servicesIncluded: [
         'Serpentine and drive belt replacement',
         'Water pump replacement',
@@ -104,6 +108,7 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
       title: 'Preventative Maintenance',
       duration: 'Routine Upkeep',
       description: 'The best way to avoid expensive breakdowns is regular maintenance. We perform the same scheduled maintenance as the dealership, but we do it at your convenience without the waiting room.',
+      seoContent: 'Routine maintenance is the key to extending the life of your vehicle and maximizing fuel economy. BWS Mobile Auto Repair offers comprehensive mobile preventative maintenance in Prince George, bringing essential services like full synthetic oil changes, spark plug replacements, and fluid top-offs directly to you. Instead of wasting your Saturday in a dealership waiting room, let our expert mechanics perform your scheduled service while you relax at home or work. We use premium filters, high-grade fluids, and OEM-quality parts to keep your car running like new.',
       servicesIncluded: [
         'Full synthetic and conventional oil changes',
         'Spark plug and ignition coil replacement (Tune-Up)',
@@ -257,6 +262,14 @@ export const ServiceDetailSheet: React.FC<ServiceDetailSheetProps> = ({ serviceI
                     <span style={{ color: 'var(--navy)', fontSize: '14px', lineHeight: '1.5', fontWeight: 600 }}>{w}</span>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {details.seoContent && (
+              <div style={{ marginTop: '32px', paddingTop: '24px', borderTop: '1px solid var(--border-color)' }}>
+                <p style={{ color: 'var(--text-muted)', fontSize: '14px', lineHeight: '1.7', margin: 0 }}>
+                  {details.seoContent}
+                </p>
               </div>
             )}
 

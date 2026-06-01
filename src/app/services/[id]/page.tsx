@@ -27,6 +27,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   return {
     title: `${title} | BWS Mobile Auto Repair`,
     description: `Professional, on-site ${title.toLowerCase()} right in your driveway. Transparent pricing and expert service in Prince George, Virginia.`,
+    openGraph: {
+      title: `${title} | BWS Mobile Auto Repair`,
+      description: `Professional, on-site ${title.toLowerCase()} right in your driveway. Transparent pricing and expert service in Prince George, Virginia.`,
+      images: [{ url: `/services/${id}.webp`, width: 1200, height: 630 }],
+    },
   };
 }
 

@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Star } from 'lucide-react';
+import { Star, ChevronRight } from 'lucide-react';
 import { Footer } from './Footer';
 
 import Link from 'next/link';
@@ -103,6 +103,36 @@ export const HomeSection: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Why Choose a Mobile Mechanic? */}
+        <motion.div
+          variants={itemVariants}
+          className="service-card"
+          style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
+        >
+          <h2 style={{ fontSize: '20px', color: 'var(--navy)', margin: 0, fontWeight: 800 }}>Why Choose a Mobile Mechanic?</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0', border: '1px solid var(--border-color)', borderRadius: '12px', overflow: 'hidden' }}>
+            {/* Header Row */}
+            <div style={{ padding: '12px 16px', background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)', borderRight: '1px solid var(--border-color)' }}>
+              <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Traditional Shop</span>
+            </div>
+            <div style={{ padding: '12px 16px', background: 'rgba(224, 92, 26, 0.06)', borderBottom: '1px solid var(--border-color)' }}>
+              <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--accent-orange)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>BWS Auto (Us)</span>
+            </div>
+            {/* Rows */}
+            {[
+              ['$$$ Dealership markup', '$$ Fair mobile pricing'],
+              ['2-3 day wait typical', 'Same-day appointments'],
+              ['Tow truck required', 'We come to your driveway'],
+              ['Stuck in a waiting room', 'Stay home or at work'],
+            ].map(([shop, mobile], i) => (
+              <div key={i} style={{ display: 'contents' }}>
+                <div style={{ padding: '12px 16px', fontSize: '14px', color: 'var(--text-secondary)', borderBottom: i < 3 ? '1px solid var(--border-color)' : 'none', borderRight: '1px solid var(--border-color)', lineHeight: 1.4 }}>{shop}</div>
+                <div style={{ padding: '12px 16px', fontSize: '14px', color: 'var(--navy)', fontWeight: 600, borderBottom: i < 3 ? '1px solid var(--border-color)' : 'none', lineHeight: 1.4 }}>{mobile}</div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* SEO Rich Description Section */}
         <motion.div
           variants={itemVariants}
@@ -123,6 +153,36 @@ export const HomeSection: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Areas We Serve */}
+        <motion.div variants={itemVariants} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <h3 style={{ fontSize: '18px', color: 'var(--navy)', margin: 0, fontWeight: 800 }}>Areas We Serve</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {[
+              { name: 'Prince George', slug: 'prince-george' },
+              { name: 'Hopewell', slug: 'hopewell' },
+              { name: 'Petersburg', slug: 'petersburg' },
+              { name: 'Colonial Heights', slug: 'colonial-heights' },
+            ].map((city) => (
+              <Link
+                key={city.slug}
+                href={`/locations/${city.slug}`}
+                style={{
+                  padding: '8px 16px',
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: '20px',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--navy)',
+                  textDecoration: 'none',
+                  transition: 'all 0.15s',
+                }}
+              >
+                {city.name}
+              </Link>
+            ))}
+          </div>
+        </motion.div>
 
         {/* Map Embed */}
         <motion.div variants={itemVariants} style={{ width: '100%', height: '220px', borderRadius: '14px', overflow: 'hidden', border: '1px solid var(--border-color)', boxShadow: '0 2px 10px rgba(0,0,0,0.04)' }}>
@@ -147,6 +207,35 @@ export const HomeSection: React.FC = () => {
           <p style={{ color: 'var(--text-muted)', fontSize: '13px', margin: '12px 0 0 0', lineHeight: 1.4 }}>
             * Same-day and emergency roadside appointments are available depending on schedule availability.
           </p>
+        </motion.div>
+
+        {/* Google Review CTA */}
+        <motion.div variants={itemVariants}>
+          <a
+            href="https://www.google.com/maps/search/BWS+Mobile+Auto+Repair+Prince+George+VA"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '14px',
+              padding: '16px 20px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-color)',
+              borderRadius: '14px',
+              textDecoration: 'none',
+              transition: 'all 0.15s',
+            }}
+          >
+            <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(224, 92, 26, 0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <Star size={20} fill="var(--accent-orange)" color="var(--accent-orange)" />
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--navy)', lineHeight: 1.3 }}>Love our service? Leave us a review!</div>
+              <div style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>Help other car owners find us on Google</div>
+            </div>
+            <ChevronRight size={18} color="var(--text-muted)" />
+          </a>
         </motion.div>
 
         {/* Payment Options */}

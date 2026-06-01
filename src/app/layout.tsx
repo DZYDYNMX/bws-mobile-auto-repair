@@ -10,6 +10,20 @@ import ClientLayout from './ClientLayout';
 export const metadata: Metadata = {
   title: 'BWS Mobile Auto Repair | Mechanic in Prince George, VA',
   description: 'Your trusted mobile mechanic serving Prince George, Hopewell, and Petersburg areas in Virginia. We come directly to your driveway for auto repair, check engine light diagnostics, and routine maintenance.',
+  openGraph: {
+    title: 'BWS Mobile Auto Repair | Mechanic in Prince George, VA',
+    description: 'Your trusted mobile mechanic serving Prince George, Hopewell, and Petersburg. We come directly to your driveway for professional auto repair.',
+    url: 'https://bwsmobileautorepair.com',
+    siteName: 'BWS Mobile Auto Repair',
+    images: [{ url: '/hero.webp', width: 1200, height: 630 }],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'BWS Mobile Auto Repair | Mechanic in Prince George, VA',
+    description: 'Your trusted mobile mechanic serving Prince George, Hopewell, and Petersburg. We come directly to your driveway for professional auto repair.',
+    images: ['/hero.webp'],
+  },
 };
 
 export default function RootLayout({
